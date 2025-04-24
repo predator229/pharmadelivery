@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "616915212866",
+    "project_id": "pharmadelivery-6dd80",
+    "storage_bucket": "pharmadelivery-6dd80.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:616915212866:android:62e6290bcf736e48d02bdb",
+        "android_client_info": {
+          "package_name": "com.example.pharmadelivery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "616915212866-2ivmj9tdtq5vvsqj7ijvj1egoego122f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pharmadelivery",
+            "certificate_hash": "140c600314d01d0ac2e566a7187a85eb24fd62f2"
+          }
+        },
+        {
+          "client_id": "616915212866-m6g9tcj7i2t27v3pin8g9098sbttba77.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBXsFtVTjgHxjuThml4q-iwdwXdoCT3LA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "616915212866-m6g9tcj7i2t27v3pin8g9098sbttba77.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "616915212866-akk238pdkgc60af6ikhs8jof6gn6krlu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.pharmadelivery"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

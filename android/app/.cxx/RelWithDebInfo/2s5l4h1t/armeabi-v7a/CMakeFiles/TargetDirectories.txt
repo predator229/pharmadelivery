@@ -1,0 +1,2 @@
+/Users/admin/Desktop/CyberShield Dev Solutions/projects/pharmadelivery/android/app/.cxx/RelWithDebInfo/2s5l4h1t/armeabi-v7a/CMakeFiles/edit_cache.dir
+/Users/admin/Desktop/CyberShield Dev Solutions/projects/pharmadelivery/android/app/.cxx/RelWithDebInfo/2s5l4h1t/armeabi-v7a/CMakeFiles/rebuild_cache.dir
