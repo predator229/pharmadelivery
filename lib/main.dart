@@ -24,11 +24,10 @@ Future<void> main() async {
     initializeDateFormatting('fr_FR', null),
   ]);
 
-  // runApp(const EntryApp());
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => DeliverymanSocketService()), // <--- AJOUT
+        ChangeNotifierProvider(create: (_) => DeliverymanSocketService()),
       ],
       child: const EntryApp(),
     ),

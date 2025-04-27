@@ -197,21 +197,7 @@ class Auth implements BaseAuth {
   @override
   Future<bool> isEmailRegistered(String email, String phoneNumber) async {
     return false;
-    //ici communication avec le serveur pour verifier si l'email ou le numero de telephone existe
-    try {
-      final List<String> signInMethods = await FirebaseAuth.instance.fetchSignInMethodsForEmail(email);
-      return signInMethods.isNotEmpty;
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'invalid-email') {
-        print('Email invalide : $email');
-      } else {
-        print('Erreur Firebase : ${e.code}');
-      }
-      return false;
-    } catch (e) {
-      print('Erreur inconnue : $e');
-      return false;
-    }
+
   }
 
 

@@ -32,51 +32,6 @@ class _HomeViewState extends State<HomeView> with SingleTickerProviderStateMixin
     super.didChangeDependencies();
     auth = AuthProviders.of(context).auth;
     deliverySocketService = Provider.of<DeliverymanSocketService>(context);
-
-  }
-
-  Widget _drawerItem(IconData icon, String label, int index) {
-    final isSelected = _currentIndex == index;
-
-    return ListTile(
-      leading: Icon(icon, color: isSelected ? SettingsClass().bottunColor : Colors.black),
-      title: Text(
-        label,
-        style: TextStyle(
-          color: isSelected ? SettingsClass().bottunColor : Colors.black87,
-          fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-        ),
-      ),
-      onTap: () {
-        setState(() {
-          _currentIndex = index;
-        });
-        Navigator.pop(context); // fermer le drawer
-      },
-    );
-  }
-
-  Widget switchWidget() {
-    switch (_currentIndex) {
-      case 0:
-        return  HomeWidget();
-      // case 1:
-      //   return const OrdersView();
-      // case 2:
-      //   return const HistoryView();
-      // case 3:
-      //   return const ProfileView();
-      case 3:
-        return SettingsWidget(
-          context: context,
-          deliverySocketService: deliverySocketService,
-          auth: auth,
-          onToggleNotifications: (enabled) => print('Notifs: $enabled'),
-          onLanguageChanged: (lang) => print('Langue: $lang'),
-        );
-      default:
-        return HomeWidget();
-    }
   }
   Column HomeWidget (){
     return  Column(
@@ -113,7 +68,6 @@ class _HomeViewState extends State<HomeView> with SingleTickerProviderStateMixin
                 }
               },
             )
-
           ],
         ),
         Padding(
@@ -159,22 +113,56 @@ class _HomeViewState extends State<HomeView> with SingleTickerProviderStateMixin
                   ),
                 ),
               ),
-              // Bouton pour démarrer une livraison
-              // Align(
-              //   alignment: Alignment.bottomRight,
-              //   child: FloatingActionButton(
-              //     onPressed: () {
-              //       // Logique pour démarrer la livraison
-              //     },
-              //     child: const Icon(Icons.play_arrow),
-              //     backgroundColor: SettingsClass().bottunColor,
-              //   ),
-              // ),
+
             ],
           ),
         ),
       ],
     );
+  }
+
+  Widget _drawerItem(IconData icon, String label, int index) {
+    final isSelected = _currentIndex == index;
+
+    return ListTile(
+      leading: Icon(icon, color: isSelected ? SettingsClass().bottunColor : Colors.black),
+      title: Text(
+        label,
+        style: TextStyle(
+          color: isSelected ? SettingsClass().bottunColor : Colors.black87,
+          fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+        ),
+      ),
+      onTap: () {
+        setState(() {
+          _currentIndex = index;
+        });
+        Navigator.pop(context); // fermer le drawer
+      },
+    );
+  }
+
+  Widget switchWidget() {
+    switch (_currentIndex) {
+      case 0:
+        return  HomeWidget();
+      // case 1:
+      //   return const OrdersView();
+      // case 2:
+      //   return const HistoryView();
+      // case 3:
+      //   return const ProfileView();
+      case 3:
+        return SettingsWidget(
+          context: context,
+          deliverySocketService: deliverySocketService,
+          auth: auth,
+          onToggleNotifications: (enabled) => print('Notifs: $enabled'),
+          onLanguageChanged: (lang) => print('Langue: $lang'),
+        );
+      default:
+        return HomeWidget();
+    }
   }
 
   @override

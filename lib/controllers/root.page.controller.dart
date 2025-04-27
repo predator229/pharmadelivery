@@ -36,7 +36,7 @@ class _RoutePageState extends State<RoutePage> {
               future: ApiController().post('users/authentificate', {'uid': FirebaseAuth.instance.currentUser?.uid}),
               builder: (context, authSnapshot) {
                 if (authSnapshot.connectionState == ConnectionState.waiting) {
-                  return const CircularProgressIndicator();
+                  return _waitingWidget();
                 } else if (authSnapshot.hasError || authSnapshot.data == null) {
                   SchedulerBinding.instance.addPostFrameCallback((_) {
                     ScaffoldMessenger.of(context).showSnackBar(
@@ -44,20 +44,24 @@ class _RoutePageState extends State<RoutePage> {
                     );
                     auth.signOut();
                   });
-                  return const CircularProgressIndicator();
+                  return WelcomeView();
                 } else if (authSnapshot.hasData && authSnapshot.data['error'] != null && authSnapshot.data['error'] == 0 ) {
                   auth.userConected = UserRegisterClass.fromJson(authSnapshot.data['user']);
                   return auth.userConected != null ? HomeView() : WelcomeView();
                 }
-                return CircularProgressIndicator();
+                return _waitingWidget();
               },
             );
           }
           return WelcomeView();
         }
-        return const CircularProgressIndicator();
+        return _waitingWidget();
       },
     );
+  }
+
+  Widget _waitingWidget() {
+    return Container( decoration: BoxDecoration(color: Theme.of(context).brightness == Brightness.dark ? Colors.black : Colors.white, ), child: Center(child: CircularProgressIndicator(color: Theme.of(context).brightness == Brightness.dark ? Colors.white : SettingsClass().secondColor,)),);
   }
 }
 

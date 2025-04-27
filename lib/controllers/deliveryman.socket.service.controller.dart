@@ -12,12 +12,15 @@ class DeliverymanSocketService extends ChangeNotifier {
 
     final token = await FirebaseAuth.instance.currentUser?.getIdToken(true);
 
-    _socket = IO.io('http://192.168.1.128:5050',
-      //'backend-cmpaharma-production.up.railway.app:5050',
+    _socket = IO.io(
+      // 'http://10.15.43.113:5050',
+      'http://192.168.1.128:5050/deliver',
+      // 'https://backend-cmpaharma-production.up.railway.app:5050',
       IO.OptionBuilder()
           .setTransports(['websocket'])
           .enableReconnection()
           .setAuth({'token': token})
+          .setQuery({'token': token}) // 2ème approche avec query params
           .build(),
     );
     _socket!.onConnect((_) {
