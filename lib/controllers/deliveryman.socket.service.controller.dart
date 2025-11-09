@@ -14,7 +14,7 @@ class DeliverymanSocketService extends ChangeNotifier {
 
     _socket = IO.io(
       // 'http://10.15.43.113:5050',
-      'http://192.168.1.128:5050/deliver',
+      'http://192.168.1.215:5050/deliver',
       // 'https://backend-cmpaharma-production.up.railway.app:5050',
       IO.OptionBuilder()
           .setTransports(['websocket'])

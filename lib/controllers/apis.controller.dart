@@ -5,7 +5,7 @@ import 'dart:convert';
 
 class ApiController {
   // final String baseUrl = 'backend-cmpaharma-production.up.railway.app:5050/api/';
-  final String baseUrl = 'http://192.168.1.128:5050/deliver/api/';
+  final String baseUrl = 'http://192.168.1.215:5050/deliver/api/';
 
   Future<dynamic> get(String endpoint) async {
     try {
@@ -43,8 +43,8 @@ class ApiController {
         'Authorization': 'Bearer $token',
       };
 
-      // print('Headers: $headers');
-      // print('datas: $data');
+      print('Headers: $headers');
+      print('datas: $data');
       // return null;
       final response = await http.post(
         Uri.parse(baseUrl + endpoint),
