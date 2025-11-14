@@ -11,18 +11,22 @@ import 'package:provider/provider.dart';
 import 'controllers/deliveryman.socket.service.controller.dart';
 import 'firebase_options.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
-
   runApp(const WaitingLoadingView());
-
   await Future.wait([
+    dotenv.load(fileName: ".env"),
     Future.delayed(const Duration(seconds: 2)),
     Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform),
     initializeDateFormatting('fr_FR', null),
   ]);
+  print("🔍 ENV loaded:");
+  print("API_BASE_URL=${dotenv.env['API_BASE_URL']}");
+  print("API_NAMESPACE=${dotenv.env['API_NAMESPACE']}");
+  print("API_PREFIX=${dotenv.env['API_PREFIX']}");
 
   runApp(
     MultiProvider(
@@ -32,7 +36,6 @@ Future<void> main() async {
       child: const EntryApp(),
     ),
   );
-
 }
 
 class EntryApp extends StatelessWidget {

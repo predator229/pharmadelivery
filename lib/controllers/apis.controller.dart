@@ -1,11 +1,24 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class ApiController {
-  // final String baseUrl = 'backend-cmpaharma-production.up.railway.app:5050/api/';
-  final String baseUrl = 'http://192.168.1.215:5050/deliver/api/';
+  String get baseUrl {
+    final base = dotenv.env['API_BASE_URL'];
+    final namespace = dotenv.env['API_NAMESPACE'];
+    final prefix = dotenv.env['API_PREFIX'];
+
+    if (base != null && base.isNotEmpty &&
+        namespace != null && namespace.isNotEmpty &&
+        prefix != null && prefix.isNotEmpty) {
+      return "$base$namespace$prefix";
+    } else {
+      print('⚠️ Variables .env manquantes ou vides. Utilisation de l\'URL locale par défaut. apis.controller.dart');
+      return 'http://192.168.1.215:5050/deliver/api/';
+    }
+  }
+  ApiController();
 
   Future<dynamic> get(String endpoint) async {
     try {
@@ -21,6 +34,7 @@ class ApiController {
       return null;
     }
   }
+
   Future<dynamic> get2(String url) async {
     try {
       final headers = {

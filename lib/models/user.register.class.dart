@@ -29,6 +29,8 @@ class UserRegisterClass {
   final String? nrCarteGrise;
   final String? nrContrat;
   final int coins;
+  final bool isActivated;
+  final DateTime? lastLogin;
 
   UserRegisterClass({
     required this.id,
@@ -56,6 +58,8 @@ class UserRegisterClass {
     this.nrCarteGrise,
     this.nrContrat,
     this.coins = 0,
+    this.isActivated = false,
+    this.lastLogin
   });
 
   factory UserRegisterClass.fromJson(Map<String, dynamic> json) {
@@ -87,6 +91,8 @@ class UserRegisterClass {
       nrCarteGrise: json['nrCarteGrise'],
       nrContrat: json['nrContrat'],
       coins: json['coins'] ?? 0,
+      isActivated: json['isActivated'] ?? false,
+      lastLogin: json['lastLogin'] != null ? DateTime.tryParse(json['lastLogin']) : null,
     );
   }
 
@@ -117,6 +123,8 @@ class UserRegisterClass {
       'nrCarteGrise': nrCarteGrise,
       'nrContrat': nrContrat,
       'coins': coins,
+      'isActivated': isActivated,
+      'lastLogin': lastLogin?.toIso8601String(),
     };
   }
 }
